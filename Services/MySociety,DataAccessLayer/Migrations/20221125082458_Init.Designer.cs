@@ -9,7 +9,7 @@ using MySociety_DataAccessLayer.DBContext;
 namespace MySociety_DataAccessLayer.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20221125065724_Init")]
+    [Migration("20221125082458_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
