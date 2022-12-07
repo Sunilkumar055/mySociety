@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MySociety.DataAccessLayer.Model
+namespace MySociety.DAL.Model
 {
     [Table("Users")]
     public class UserModel

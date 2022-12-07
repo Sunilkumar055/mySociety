@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MySociety.BAL.Interface;
 using MySociety.BAL.Repository;
-using MySociety.DataAccessLayer.Model;
+using MySociety.Common.Configurations;
+using MySociety.Common.Model;
 using System;
 using System.Threading.Tasks;
 
@@ -26,19 +28,19 @@ namespace MySocietyAPI.Controllers
         //    return Ok(users);
         //}[HttpGet]
         #endregion
-        readonly IUserRepository userRepository;
-
-        public UsersController(IUserRepository _userRepository)
+        readonly IAuthManager authManager;
+        
+        public UsersController(IAuthManager authManager)
         {
-            userRepository = _userRepository;
+            this.authManager = authManager;            
         }
 
         [Route("GetUsers")]
-        public async Task<IActionResult> GetUsers()
+        public IActionResult GetUsers()
         {
             try
             {
-                var users = await userRepository.GetUsers();
+                var users = authManager.GetUsers();
                 if (users is null)
                 {
                     return NotFound();
@@ -52,15 +54,15 @@ namespace MySocietyAPI.Controllers
         }
 
         [Route("GetUserById")]
-        public async Task<IActionResult> GetUserById(long? userId)
+        public IActionResult GetUserById(long userId = 0)
         {
-            if (userId == null)
+            if (userId == 0)
             {
                 return BadRequest();
             }
             try
             {
-                var user = await userRepository.GetUserById(userId);
+                var user = authManager.GetUsers(userId);
                 if (user == null)
                     return NotFound();
 
@@ -74,13 +76,13 @@ namespace MySocietyAPI.Controllers
 
         [HttpPost]
         [Route("CreateUser")]        
-        public async Task<IActionResult> AddUser([FromBody]UserModel userModel)
+        public async Task<IActionResult> AddUser([FromBody]User user)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var userid = await userRepository.AddUser(userModel);
+                    var userid = await authManager.AddUser(user);
                     if (userid > 0) 
                         return Ok(userid);
                     else
@@ -95,15 +97,15 @@ namespace MySocietyAPI.Controllers
         }
 
         [Route("DeleteUser")]
-        public async Task<IActionResult> DeleteUser(long? userId)
+        public async Task<IActionResult> DeleteUser(long userId)
         {
-            if (userId == null)
+            if (userId <= 0)
             {
                 return BadRequest();
             }
             try
             {
-                var user = await userRepository.DeleteUser(userId);
+                var user = await authManager.DeleteUser(userId);
                 if (user == 0)
                     return NotFound();
 
@@ -115,13 +117,13 @@ namespace MySocietyAPI.Controllers
             }
         }
         [Route("UpdateUser")]
-        public async Task<IActionResult> UpdateUser(UserModel userModel)
+        public async Task<IActionResult> UpdateUser(User user)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    await userRepository.UpdateUser(userModel);
+                    await authManager.UpdateUser(user);
                     return Ok();
                 }
                 catch (Exception)
@@ -132,5 +134,21 @@ namespace MySocietyAPI.Controllers
             return BadRequest();
         }
 
+        [Route("Roles")]
+        public IActionResult GetRole(int RoleID = 0)
+        {
+            try
+            {
+                var roles = authManager.GetRole(RoleID);
+                if (roles == null)
+                    return NotFound();
+
+                return Ok(roles);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
     }
 }
