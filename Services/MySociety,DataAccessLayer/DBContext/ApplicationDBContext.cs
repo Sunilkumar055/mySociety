@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MySociety.DataAccessLayer.Model;
+using MySociety.DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;

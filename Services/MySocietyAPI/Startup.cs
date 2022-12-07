@@ -5,7 +5,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MySociety.BAL.Repository;
+using MySociety.Common.Configurations;
+using MySociety_DataAccessLayer;
 using MySociety_DataAccessLayer.DBContext;
+using MySociety_DataAccessLayer.Helper;
+using MySociety_DataAccessLayer.Helper.Interface;
+using MySociety_DataAccessLayer.Interface;
 
 namespace MySocietyAPI
 {
@@ -13,7 +18,7 @@ namespace MySocietyAPI
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = configuration;            
         }
 
         public IConfiguration Configuration { get; }
@@ -22,12 +27,21 @@ namespace MySocietyAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<ApplicationDBContext>(
-                options => options.UseSqlServer(
-                    Configuration.GetConnectionString("AzureConnection")
-                    )
-                );
-            services.AddScoped<IUserRepository, UserRepository>();
+            //services.AddTransient<>
+            //services.AddDbContext<ApplicationDBContext>(
+            //    options => options.UseSqlServer(
+            //        Configuration.GetConnectionString("AzureConnection")
+            //        )
+            //    );
+
+
+            //Connection string
+            services.AddSingleton<ConfigurationManager>(new ConfigurationManager(Configuration.GetSection("CustomConfig")));
+
+            //Add dependancy
+            services.AddScoped<IAuthManager, AuthManager>();                        
+            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<ISQLHelper, SQLHelper>();                                 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
