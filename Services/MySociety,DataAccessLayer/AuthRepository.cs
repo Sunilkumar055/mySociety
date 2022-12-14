@@ -12,19 +12,28 @@ using MySociety.Common.Configurations;
 
 namespace MySociety_DataAccessLayer
 {
-   public class AuthRepository : IAuthRepository
+    public class AuthRepository : IAuthRepository
     {
-        private readonly ISQLHelper sQLHelper;        
-        public AuthRepository(ISQLHelper sQLHelper) 
+        private readonly ISQLHelper sQLHelper;
+        public AuthRepository(ISQLHelper sQLHelper)
         {
-            this.sQLHelper = sQLHelper;            
+            this.sQLHelper = sQLHelper;
+        }
+
+        public DataSet AuthUser(string username, string password)
+        {
+            SqlParameter[] sqlParameters = {
+            new SqlParameter("@username", username),
+            new SqlParameter("@password", password)
+            };
+            return sQLHelper.GetData(StoreProcedures.spAuthUser, sqlParameters);
         }
 
         public async Task<long> DeleteUser(long id)
         {
             SqlParameter[] parameters =
             {
-                new SqlParameter("@UserID", id)             
+                new SqlParameter("@UserID", id)
             };
             return await sQLHelper.ExecuteNonQuery(StoreProcedures.spDeleteUser, parameters);
         }
@@ -38,7 +47,7 @@ namespace MySociety_DataAccessLayer
         }
 
         public DataSet GetUsers(long? id)
-        {            
+        {
             SqlParameter[] sqlParameters = {
             new SqlParameter("@UserId", id)
             };

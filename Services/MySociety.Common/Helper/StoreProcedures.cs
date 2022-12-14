@@ -13,5 +13,6 @@ namespace MySociety.Common.Helper
         public static string spDeleteUser = "spDeleteUser";
 
         public static string spGetRole = "spGetRole";
+        public static string spAuthUser = "spAuthUser";
     }
 }

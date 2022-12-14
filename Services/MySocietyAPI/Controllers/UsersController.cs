@@ -150,5 +150,23 @@ namespace MySocietyAPI.Controllers
                 return BadRequest();
             }
         }
+
+        [Route("Login")]
+        [HttpPost]
+        public IActionResult AuthUser([FromBody] User user)
+        {            
+            try
+            {
+                var isValiduser = authManager.AuthUser(user.UserName, user.Password);
+                if (isValiduser == null)
+                    return NotFound();
+
+                return Ok(isValiduser);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

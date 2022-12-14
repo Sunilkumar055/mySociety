@@ -46,5 +46,11 @@ namespace MySociety.BAL.Repository
         {
             return HelperMethods.ConvertToList<Role>(authRepository.GetRole(RoleID).Tables[0]);
         }
+
+        public User AuthUser(string username, string password)
+        {
+            DataSet ds = authRepository.AuthUser(username,password);
+            return HelperMethods.ConvertToList<User>(ds.Tables[0]).FirstOrDefault();
+        }
     }
 }
