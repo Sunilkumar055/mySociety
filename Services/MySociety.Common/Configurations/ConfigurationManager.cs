@@ -14,7 +14,7 @@ namespace MySociety.Common.Configurations
             this.configuration = configuration;
         }
 
-        public string ConnectionString => configuration["DefaultConnection"]; //configuration.GetConnectionString("DefaultConnection");
+        public string ConnectionString => configuration["AzureConnection"];//configuration["DefaultConnection"]; 
     }
 }
 

@@ -14,5 +14,6 @@ namespace MySociety_DataAccessLayer.Interface
         Task<long> DeleteUser(long id);
         Task<long> UpdateUser(User userModel);
         DataSet GetRole(int RoleID);
+        public DataSet AuthUser(string username, string password);
     }
 }

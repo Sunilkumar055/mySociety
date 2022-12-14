@@ -13,6 +13,6 @@ namespace MySociety.BAL.Repository
         Task<long> DeleteUser(long id);
         Task<long> UpdateUser(User userModel);
         List<Role> GetRole(int id = 0);
-
+        public User AuthUser(string username, string password);
     }
 }

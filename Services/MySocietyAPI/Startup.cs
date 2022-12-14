@@ -11,6 +11,7 @@ using MySociety_DataAccessLayer.DBContext;
 using MySociety_DataAccessLayer.Helper;
 using MySociety_DataAccessLayer.Helper.Interface;
 using MySociety_DataAccessLayer.Interface;
+using Newtonsoft.Json.Serialization;
 
 namespace MySocietyAPI
 {
@@ -36,17 +37,25 @@ namespace MySocietyAPI
 
 
             //Connection string
-            services.AddSingleton<ConfigurationManager>(new ConfigurationManager(Configuration.GetSection("CustomConfig")));
+            services.AddSingleton<ConfigurationManager>(new ConfigurationManager(Configuration.GetSection("CustomConfig")));            
+            //CORS
+            services.AddCors(options =>
+                options.AddPolicy("AllowOrigin",options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())
+            );
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());                
 
             //Add dependancy
             services.AddScoped<IAuthManager, AuthManager>();                        
             services.AddScoped<IAuthRepository, AuthRepository>();
-            services.AddScoped<ISQLHelper, SQLHelper>();                                 
+            services.AddScoped<ISQLHelper, SQLHelper>();               
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
