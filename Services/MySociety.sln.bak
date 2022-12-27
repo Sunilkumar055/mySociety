@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33027.164
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySociety.API", "MySociety.API\MySociety.API.csproj", "{47778F71-02B0-4423-9D54-4DE2ECB7E3A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySociety.API", "MySocietyAPI\MySociety.API.csproj", "{47778F71-02B0-4423-9D54-4DE2ECB7E3A6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySociety.BAL", "MySociety.BAL\MySociety.BAL.csproj", "{1347AF56-E09F-47FF-AE4D-4B6DC6D9C256}"
 EndProject
