@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.31" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MySociety.Common\MySociety.Common.csproj" />
-    <ProjectReference Include="..\MySociety.DAL\MySociety.DAL.csproj" />
   </ItemGroup>
 
 </Project>

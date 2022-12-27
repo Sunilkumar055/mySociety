@@ -16,14 +16,20 @@ export class LoginComponent implements OnInit {
   password: string;
   errorMsg: string;
   ngOnInit(): void {
-    //this.loadDate();
+    this.loaddate();
   }
 
-  // loadDate(){       
-  //     this.ServiceService.getData().subscribe(data=>{
-  //       this.userList = data;            
-  //     })     
-  // }  
+   loaddate(){       
+       this.ServiceService.getData().subscribe({
+       next(value) {
+        this.userList = value;
+       },error(err) {
+         alert(err);
+       },complete() {
+        alert(JSON.stringify(this.userList));
+       }
+      })          
+   }  
   login(){
     var val={
         username: this.userList.username,

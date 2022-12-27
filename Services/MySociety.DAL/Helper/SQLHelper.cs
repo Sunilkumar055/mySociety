@@ -1,13 +1,16 @@
-﻿using Microsoft.Data.SqlClient;
-using MySociety.Common.Configurations;
-using MySociety_DataAccessLayer.Helper.Interface;
+﻿using MySociety.Common.Configurations;
+using MySociety.DAL.Helper.Interface;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace MySociety_DataAccessLayer.Helper
+namespace MySociety.DAL.Helper
 {
-    public class SQLHelper : ISQLHelper    {
+    public class SQLHelper : ISQLHelper
+    {
 
         private readonly ConfigurationManager configurationManager;
 
@@ -31,7 +34,7 @@ namespace MySociety_DataAccessLayer.Helper
                     {
                         command.Parameters.AddRange(prm);
                     }
-                    return await command.ExecuteNonQueryAsync();                    
+                    return await command.ExecuteNonQueryAsync();
                 }
             }
             catch (Exception ex)

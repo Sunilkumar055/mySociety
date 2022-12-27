@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MySociety.DAL.Model;
+using MySociety.Common.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MySociety_DataAccessLayer.DBContext
+namespace MySociety.DAL.DBContext
 {
     public class ApplicationDBContext : DbContext
     {
@@ -12,11 +12,6 @@ namespace MySociety_DataAccessLayer.DBContext
         {
         }
 
-        public DbSet<UserModel> users { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<UserModel>().ToTable("Users");
-        }
+        public DbSet<User> users { get; set; }
     }
 }

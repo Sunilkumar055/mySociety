@@ -1,10 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MySociety.Common.Configurations;
-using MySociety.Common.Helper;
+﻿using MySociety.Common.Helper;
 using MySociety.Common.Model;
-using MySociety_DataAccessLayer.DBContext;
-using MySociety_DataAccessLayer.Interface;
-using System;
+using MySociety.DAL.Interface;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

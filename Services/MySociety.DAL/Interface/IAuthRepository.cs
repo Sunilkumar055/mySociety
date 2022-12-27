@@ -5,11 +5,11 @@ using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MySociety_DataAccessLayer.Interface
+namespace MySociety.DAL.Interface
 {
     public interface IAuthRepository
     {
-        DataSet GetUsers(long? id);        
+        DataSet GetUsers(long? id);
         Task<long> SaveUserMaster(User userModel);
         Task<long> DeleteUser(long id);
         Task<long> UpdateUser(User userModel);
