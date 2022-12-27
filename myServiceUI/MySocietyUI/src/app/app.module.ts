@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
 import {ServiceService} from './service.service';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {ServiceService} from './service.service';
     AppComponent,
     LoginComponent,
     AdminLayoutComponent,
+    RegisterComponent,
 
   ],
   providers: [ServiceService],

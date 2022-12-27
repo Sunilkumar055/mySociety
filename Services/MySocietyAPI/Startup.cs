@@ -1,16 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MySociety.BAL.Repository;
 using MySociety.Common.Configurations;
-using MySociety_DataAccessLayer;
-using MySociety_DataAccessLayer.DBContext;
-using MySociety_DataAccessLayer.Helper;
-using MySociety_DataAccessLayer.Helper.Interface;
-using MySociety_DataAccessLayer.Interface;
+using MySociety.DAL;
+using MySociety.DAL.Helper;
+using MySociety.DAL.Helper.Interface;
+using MySociety.DAL.Interface;
 using Newtonsoft.Json.Serialization;
 
 namespace MySocietyAPI

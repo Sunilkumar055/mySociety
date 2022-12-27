@@ -1,13 +1,13 @@
-﻿using Microsoft.Data.SqlClient;
-using MySociety.Common.Helper;
-using MySociety_DataAccessLayer.Helper.Interface;
-using MySociety_DataAccessLayer.Interface;
+﻿using MySociety.Common.Helper;
+using MySociety.DAL.Helper.Interface;
+using MySociety.DAL.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Text;
 
-namespace MySociety_DataAccessLayer
+namespace MySociety.DAL
 {
     class RoleRepository : IRoleRepository
     {
